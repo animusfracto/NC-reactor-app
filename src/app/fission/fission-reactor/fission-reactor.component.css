@@ -1,0 +1,12 @@
+.reactor-layer {
+}
+
+.reactor-row {
+  height: 66px;
+}
+
+.reactor-block {
+  position: relative;
+  width: auto;
+  height: auto;
+}

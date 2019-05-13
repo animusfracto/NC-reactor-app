@@ -1,0 +1,147 @@
+<div>
+  <mat-expansion-panel [expanded]="! dimensions" *ngLet="dimensions$ | async as dimensions">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Dimensions
+      </mat-panel-title>
+      <mat-panel-description>
+        {{ dimensions.width + 'x' + dimensions.length + 'x' + dimensions.height }}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <form #form="ngForm" (ngSubmit)="onRebuild(form.value)">
+      <div class="row">
+        <mat-form-field>
+          <label for="width" aria-label="Width" hidden>Width</label>
+          <input matInput placeholder="Width" [ngModel]="dimensions.width" type="number" id="width" name="width" min="1" max="24" />
+        </mat-form-field>
+        <mat-form-field>
+          <label for="length" aria-label="Length" hidden>Length</label>
+          <input matInput placeholder="Length" [ngModel]="dimensions.length" type="number" id="length" name="length" min="1" max="24" />
+        </mat-form-field>
+        <mat-form-field>
+          <label for="height" aria-label="Height" hidden>Height</label>
+          <input matInput placeholder="Height" [ngModel]="dimensions.height" type="number" id="height" name="height" min="1" max="24" />
+        </mat-form-field>
+      </div>
+      <mat-action-row>
+        <button mat-stroked-button type="submit">Rebuild</button>
+      </mat-action-row>
+    </form>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="showPalette || (dimensions$ | async)">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Brush
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-grid-list cols="3" rowHeight="40px">
+      <mat-grid-tile *ngFor="let type of blocks">
+        <label>
+          {{type.name}}
+          <input type="radio" [value]="type.character" (change)="changeBrush($event)" [checked]="type.character === reactorStore.brush" />
+        </label>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Fuels
+      </mat-panel-title>
+      <mat-panel-description>
+        {{selectedFuel != null ? selectedFuel.name : 'None'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-form-field>
+      <mat-label>Fuel</mat-label>
+      <mat-select [(ngModel)]="selectedFuel" (selectionChange)="changeFuel()">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let fuel of fuels" [value]="fuel">
+          {{fuel.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div *ngIf="selectedFuel">
+      <div>
+        Base duration:
+        <span>{{selectedFuel.duration}}</span>
+      </div>
+      <div>
+        Base power:
+        <span>{{selectedFuel.basePower}}</span>
+      </div>
+      <div>
+        Base heat:
+        <span>{{selectedFuel.baseHeat}}</span>
+      </div>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel *ngLet="stats$ | async as stats">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Statistics
+      </mat-panel-title>
+      <mat-panel-description *ngIf="stats">
+        {{stats.netHeat() <= 0 ? 'Stable' : 'Unstable'}},
+        {{stats.power.toFixed(1)}} RF/t
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div *ngIf="stats">
+      <div>
+        Efficiency:
+        <span>{{(stats.efficiency * 100 / stats.cells).toFixed(1)}}%</span>
+      </div>
+      <div>
+        Heat:
+        <span>{{(stats.heatMultiplier * 100 / stats.cells).toFixed(1)}}%</span>
+      </div>
+      <div>
+        Cooling:
+        <span>{{stats.cooling}} H/t</span>
+      </div>
+    </div>
+    <div *ngIf="stats && selectedFuel">
+      <em>Using {{selectedFuel.name}}</em>
+      <div>
+        Power generated:
+        <span>{{stats.power.toFixed(1)}} RF/t</span>
+      </div>
+      <div>
+        Heat generated:
+        <span>{{stats.heat.toFixed(1)}} H/t</span>
+      </div>
+      <div>
+        Net heat:
+        <span>{{stats.netHeat().toFixed(1)}} H/t</span>
+      </div>
+      <div *ngIf="stats.netHeat() > 0">
+        Time to meltdown:
+        <span>{{stats.timeToMeltdown((dimensions$ | async).volume()).toFixed(1)}} sec</span>
+      </div>
+      <div>
+        Burn time:
+        <span>{{stats.burnTime.toFixed(1)}} mins</span>
+      </div>
+      <div>
+        Power per unit of fuel:
+        <span>{{(stats.burnTime * 20 * stats.power).toFixed(0)}} RF</span>
+      </div>
+    </div>
+    <div *ngIf="!stats">
+      Stats will be calculated as soon as the reactor is updated
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Material Cost
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+<!--    TODO-->
+    Coming soon &reg;
+  </mat-expansion-panel>
+</div>
