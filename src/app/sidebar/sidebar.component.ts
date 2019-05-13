@@ -19,8 +19,8 @@ export class SidebarComponent implements OnInit {
   readonly blocks: ReactorBlock[] = Object.values(types).map((fn) => fn());
   readonly fuels: FissionFuel[] = fuels;
 
-  private showPalette = false;
-  private selectedFuel: FissionFuel = fuels[0];
+  showPalette = false;
+  selectedFuel: FissionFuel = fuels[0];
 
   dimensions$: Observable<Dimensions>;
   stats$: Observable<ReactorStats>;
