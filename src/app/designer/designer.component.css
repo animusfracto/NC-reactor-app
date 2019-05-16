@@ -18,7 +18,7 @@
 .content {
   padding-left: 20px;
   padding-top: 10px;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .header {

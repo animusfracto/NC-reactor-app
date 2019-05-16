@@ -18,6 +18,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FissionBlockComponent } from './fission/fission-block/fission-block.component';
 import { DesignerComponent } from './designer/designer.component';
 import { NgLetDirective } from './directives/ng-let.directive';
+import { DimensionsComponent } from './sidebar/dimensions/dimensions.component';
+import { PaletteComponent } from './sidebar/palette/palette.component';
+import { FuelsComponent } from './sidebar/fuels/fuels.component';
+import { StatsComponent } from './sidebar/stats/stats.component';
+import { MaterialsComponent } from './sidebar/materials/materials.component';
 
 const ROUTES: Routes = [
   {
@@ -38,7 +43,12 @@ const ROUTES: Routes = [
     SidebarComponent,
     FissionBlockComponent,
     DesignerComponent,
-    NgLetDirective
+    NgLetDirective,
+    DimensionsComponent,
+    PaletteComponent,
+    FuelsComponent,
+    StatsComponent,
+    MaterialsComponent
   ],
   imports: [
     BrowserAnimationsModule,

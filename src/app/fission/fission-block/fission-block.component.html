@@ -1,12 +1,5 @@
-<!--<div>-->
-<!--  <img [matTooltip]="block.getTooltip()" matTooltipClass="block-tooltip" [src]="'assets/' + block.image" [alt]="block.name" />-->
-<!--  <img [matTooltip]="block.getTooltip()" matTooltipClass="block-tooltip" src="assets/water.png" />-->
-<!--</div>-->
-
-<div [matTooltip]="block.getTooltip()" matTooltipClass="block-tooltip" class="block" [ngStyle]="style">
-  <div class="cube" [ngClass]="{ 'inactive': (block.active != null && ! block.active) }" >
-    <div class="face top" [ngStyle]="block.style"></div>
-    <div class="face front" [ngStyle]="block.style"></div>
-    <div class="face side" [ngStyle]="block.style"></div>
-  </div>
+<div class="block" [ngStyle]="getOffsets()" (click)="blockClicked()" [class.inactive]="block.active === false">
+<!--<div class="block" (click)="blockClicked()" [class.inactive]="! block.active">-->
+  <img [matTooltip]="block.getTooltip()" matTooltipClass="block-tooltip"
+       [src]="getImage()" [alt]="block.name" />
 </div>

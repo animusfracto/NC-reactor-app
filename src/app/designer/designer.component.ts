@@ -11,6 +11,6 @@ export class DesignerComponent implements OnInit {
   constructor(private reactorStore: ReactorStoreService) { }
 
   ngOnInit() {
-    this.reactorStore.bindReactorToURL();
+    this.reactorStore.parseReactorFromURL();
   }
 }

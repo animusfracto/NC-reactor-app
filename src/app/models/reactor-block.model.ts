@@ -1,4 +1,4 @@
-import { Reactor } from './reactor.model';
+import { FissionReactor } from './fission-reactor.model';
 
 export abstract class ReactorBlock {
   name: string;
@@ -6,22 +6,30 @@ export abstract class ReactorBlock {
   style: { [p: string]: string };
   image: string;
 
-  readonly i: number;
-  readonly j: number;
-  readonly k: number;
+  reactor: FissionReactor;
+  i: number;
+  j: number;
+  k: number;
 
   active: boolean = null;
 
-  static blockType(block: ReactorBlock, type: typeof ReactorBlock): boolean {
+  // used for lambdas to check block type in an easier manner
+  protected static blockType(block: ReactorBlock, type: typeof ReactorBlock): boolean {
     return block != null && block.active && block instanceof type;
   }
 
-  static getNeighbors(reactor: Reactor, i, j, k): ReactorBlock[] {
-    return [ reactor.blockAt(i - 1, j, k), reactor.blockAt(i + 1, j, k) ];
+  protected getNeighbors(): ReactorBlock[] {
+    return [ this.reactor.blockAt(this.i - 1, this.j, this.k), this.reactor.blockAt(this.i + 1, this.j, this.k),
+             this.reactor.blockAt(this.i, this.j - 1, this.k), this.reactor.blockAt(this.i, this.j + 1, this.k),
+             this.reactor.blockAt(this.i, this.j, this.k - 1), this.reactor.blockAt(this.i, this.j, this.k + 1) ];
+  }
+
+  public toCharacter(): string {
+    return this.character;
   }
 
   public toString(): string {
-    return this.character;
+    return `${this.character}@i=${this.i},j=${this.j},k=${this.k}`;
   }
 
   public getTooltip(): string {
@@ -33,5 +41,5 @@ export abstract class ReactorBlock {
   }
 
   abstract getInvalidMessage(): string;
-  abstract calculateActive(...neighbors: ReactorBlock[]): void;
+  abstract calculateActive(): void;
 }

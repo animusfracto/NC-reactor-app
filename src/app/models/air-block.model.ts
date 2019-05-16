@@ -7,6 +7,7 @@ export class AirBlock extends ReactorBlock {
     background: 'none',
     border: '1px dashed'
   };
+  image; // TODO create and add
 
   active = true;
 
@@ -14,5 +15,5 @@ export class AirBlock extends ReactorBlock {
     return 'Block is invalid, something is wrong';
   }
 
-  calculateActive(...neighbors: ReactorBlock[]): void { }
+  calculateActive(): void { }
 }

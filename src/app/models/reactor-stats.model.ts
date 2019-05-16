@@ -8,9 +8,9 @@ export class ReactorStats {
 
   // With fuel
   fuel: FissionFuel;
-  heat: number; // H/t
-  power: number; // RF/t
-  burnTime: number; // mins
+  heat = 0; // H/t
+  power = 0; // RF/t
+  burnTime = 0; // mins
 
   public setFuel(fuel: FissionFuel) {
     if (fuel != null) {
@@ -23,10 +23,5 @@ export class ReactorStats {
 
   public netHeat(): number {
     return this.heat + this.cooling;
-  }
-
-  // Time to meltdown in seconds
-  public timeToMeltdown(volume): number {
-    return volume * 25000 / this.netHeat() / 20;
   }
 }

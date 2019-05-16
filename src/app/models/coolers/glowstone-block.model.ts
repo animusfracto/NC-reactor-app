@@ -6,10 +6,11 @@ export class GlowstoneBlock extends CoolingReactorBlock {
   name = 'Glowstone';
   character = 'S';
   style = { background: '#990' };
+  image = 'glowstone.png';
 
   getInvalidMessage(): string { return 'Must touch at least two active moderator blocks'; }
 
-  calculateActive(...neighbors: ReactorBlock[]): void {
-    this.active = neighbors.filter(block => ReactorBlock.blockType(block, ModeratorBlock)).length >= 2;
+  calculateActive(): void {
+    this.active = this.getNeighbors().filter(block => ReactorBlock.blockType(block, ModeratorBlock)).length >= 2;
   }
 }

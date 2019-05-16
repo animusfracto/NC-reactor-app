@@ -1,7 +1,7 @@
 export class Dimensions {
-  height: number;
-  width: number;
-  length: number;
+  length: number; // x
+  width: number;  // y
+  height: number; // z
 
   constructor(height: number, width: number, length: number) {
     this.height = height;
@@ -14,6 +14,6 @@ export class Dimensions {
   }
 
   public toString(): string {
-    return `[${this.height}, ${this.width}, ${this.length}] (h, w, l)`;
+    return `[${this.length}, ${this.width}, ${this.height}] (l, w, h)`;
   }
 }

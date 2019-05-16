@@ -6,10 +6,11 @@ export class CryotheumBlock extends CoolingReactorBlock {
   name = 'Cryotheum';
   character = 'Y';
   style = { background: '#059' };
+  image = 'cryotheum.png';
 
   getInvalidMessage(): string { return 'Must touch at least two Reactor Cells'; }
 
-  calculateActive(...neighbors: ReactorBlock[]): void {
-    this.active = neighbors.filter(block => ReactorBlock.blockType(block, ReactorCell)).length >= 2;
+  calculateActive(): void {
+    this.active = this.getNeighbors().filter(block => ReactorBlock.blockType(block, ReactorCell)).length >= 2;
   }
 }

@@ -6,6 +6,7 @@ interface NgLetContext {
 }
 
 @Directive({
+  // tslint:disable-next-line:directive-selector
   selector: '[ngLet]'
 })
 export class NgLetDirective {

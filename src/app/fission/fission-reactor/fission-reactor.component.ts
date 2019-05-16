@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ReactorStoreService } from '../../service/reactor-store.service';
 import { Dimensions } from '../../models/dimensions.model';
+import { FissionReactor } from '../../models/fission-reactor.model';
 
 @Component({
   selector: 'app-fission-reactor',
@@ -12,19 +13,12 @@ import { Dimensions } from '../../models/dimensions.model';
 })
 export class FissionReactorComponent implements OnInit {
 
-  reactor$: Observable<ReactorBlock[][][]>;
-  dimensions$: Observable<Dimensions>;
+  reactor$: Observable<FissionReactor>;
 
   constructor(private route: ActivatedRoute,
               private reactorStore: ReactorStoreService) { }
 
   ngOnInit() {
     this.reactor$ = this.reactorStore.getReactor();
-    this.dimensions$ = this.reactorStore.getDimensions();
-  }
-
-  blockClick(i, j, k): void {
-    console.log(`clicked block at i=${i}, j=${j}, k=${k}`);
-    this.reactorStore.paintBlock(i, j, k);
   }
 }

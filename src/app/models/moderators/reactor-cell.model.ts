@@ -5,6 +5,7 @@ export class ReactorCell extends ReactorBlock {
   name = 'Reactor Cell';
   character = 'C';
   style = { background: '#bbb' };
+  image = 'cell.png';
 
   active = true;
 
@@ -27,73 +28,65 @@ export class ReactorCell extends ReactorBlock {
     return efficiency;
   }
 
-  calculateActive(...neighbors): void {
+  calculateActive(): void {
+    const neighbors = this.getNeighbors();
     this.adjacentModerators = neighbors.filter(block => ReactorBlock.blockType(block, ModeratorBlock)).length;
     this.adjacentCells = neighbors.filter(block => ReactorBlock.blockType(block, ReactorCell)).length;
+
+    this.checkAdjacency();
   }
 
-  checkAdjacency(reactor: ReactorBlock[][][], i: number, j: number, k: number): void {
+  checkAdjacency(): void {
     if (this.adjacentModerators === 0) {
       return;
     }
 
     for (let search = 0; search <= 4; search++) {
-      if (this.indexOrNull(reactor, i + search, j, k) instanceof ModeratorBlock
-        && this.indexOrNull(reactor, i + search + 1, j, k) instanceof ReactorCell) {
+      if (this.reactor.blockAt(this.i + search, this.j, this.k) instanceof ModeratorBlock
+        && this.reactor.blockAt(this.i + search + 1, this.j, this.k) instanceof ReactorCell) {
         this.adjacentCells += 1;
         break;
       }
     }
 
     for (let search = 0; search <= 4; search++) {
-      if (this.indexOrNull(reactor, i - search, j, k) instanceof ModeratorBlock
-        && this.indexOrNull(reactor, i - search - 1, j, k) instanceof ReactorCell) {
+      if (this.reactor.blockAt(this.i - search, this.j, this.k) instanceof ModeratorBlock
+        && this.reactor.blockAt(this.i - search - 1, this.j, this.k) instanceof ReactorCell) {
         this.adjacentCells += 1;
         break;
       }
     }
 
     for (let search = 0; search <= 4; search++) {
-      if (this.indexOrNull(reactor, i, j + search, k) instanceof ModeratorBlock
-        && this.indexOrNull(reactor, i, j + search + 1, k) instanceof ReactorCell) {
+      if (this.reactor.blockAt(this.i, this.j + search, this.k) instanceof ModeratorBlock
+        && this.reactor.blockAt(this.i, this.j + search + 1, this.k) instanceof ReactorCell) {
         this.adjacentCells += 1;
         break;
       }
     }
 
     for (let search = 0; search <= 4; search++) {
-      if (this.indexOrNull(reactor, i, j - search, k) instanceof ModeratorBlock
-        && this.indexOrNull(reactor, i, j - search - 1, k) instanceof ReactorCell) {
+      if (this.reactor.blockAt(this.i, this.j - search, this.k) instanceof ModeratorBlock
+        && this.reactor.blockAt(this.i, this.j - search - 1, this.k) instanceof ReactorCell) {
         this.adjacentCells += 1;
         break;
       }
     }
 
     for (let search = 0; search <= 4; search++) {
-      if (this.indexOrNull(reactor, i, j, k + search) instanceof ModeratorBlock
-        && this.indexOrNull(reactor, i, j, k + search + 1) instanceof ReactorCell) {
+      if (this.reactor.blockAt(this.i, this.j, this.k + search) instanceof ModeratorBlock
+        && this.reactor.blockAt(this.i, this.j, this.k + search + 1) instanceof ReactorCell) {
         this.adjacentCells += 1;
         break;
       }
     }
 
     for (let search = 0; search <= 4; search++) {
-      if (this.indexOrNull(reactor, i, j, k - search) instanceof ModeratorBlock
-        && this.indexOrNull(reactor, i, j, k - search - 1) instanceof ReactorCell) {
+      if (this.reactor.blockAt(this.i, this.j, this.k - search) instanceof ModeratorBlock
+        && this.reactor.blockAt(this.i, this.j, this.k - search - 1) instanceof ReactorCell) {
         this.adjacentCells += 1;
         break;
       }
-    }
-  }
-
-  private indexOrNull(reactor: ReactorBlock[][][], i: number, j: number, k: number): ReactorBlock {
-    try {
-      return reactor[i][j][k];
-    } catch (error) {
-      if (! (error instanceof TypeError)) {
-        console.error(error);
-      }
-      return null;
     }
   }
 }

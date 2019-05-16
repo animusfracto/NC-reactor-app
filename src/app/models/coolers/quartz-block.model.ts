@@ -6,10 +6,11 @@ export class QuartzBlock extends CoolingReactorBlock {
   name = 'Quartz';
   character = 'Q';
   style = { background: '#aaa' };
+  image = 'quartz.png';
 
   getInvalidMessage(): string { return 'Must touch at least one active moderator block'; }
 
-  calculateActive(...neighbors: ReactorBlock[]): void {
-    this.active = neighbors.filter(block => ReactorBlock.blockType(block, ModeratorBlock)).length >= 1;
+  calculateActive(): void {
+    this.active = this.getNeighbors().filter(block => ReactorBlock.blockType(block, ModeratorBlock)).length >= 1;
   }
 }

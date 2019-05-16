@@ -1,14 +1,7 @@
-<ng-container *ngIf="dimensions$ | async as dimensions">
-  <div class="reactor-layer" *ngFor="let layer of reactor$ | async; index as i"
-       [ngStyle]="{'height': (dimensions.length + dimensions.width) * 50 + 'px'}" >
-    <ng-template ngFor let-row [ngForOf]="layer" let-j="index">
-      <ng-template ngFor let-block [ngForOf]="row" let-k="index">
-        <app-fission-block [block]="block" (click)="blockClick(i, j, k)" class="reactor-block"
-                           [style]="{'margin-left': (dimensions.width - j - 1 + k) * 90 + 'px',
-                                     'margin-top': (j + k) * 50 + 'px'}" >
-          Block goes here
-        </app-fission-block>
-      </ng-template>
-    </ng-template>
-  </div>
-</ng-container>
+<div class="reactor-area" *ngIf="reactor$ | async as reactor">
+  <app-fission-block class="reactor-block" *ngFor="let block of reactor.blocks" [block]="block" [scale]="32">
+<!--                     [style.grid-column-start]="reactor.dimensions.length - block.i + block.j"-->
+<!--                     [style.grid-row-start]="block.k * (reactor.dimensions.length + reactor.dimensions.width)">-->
+    Reactor Block
+  </app-fission-block>
+</div>

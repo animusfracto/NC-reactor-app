@@ -1,0 +1,33 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Fuels
+    </mat-panel-title>
+    <mat-panel-description>
+      {{fuel != null ? fuel.name : 'None'}}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <mat-form-field>
+    <mat-label>Fuel</mat-label>
+    <mat-select [(ngModel)]="fuel" (selectionChange)="changeFuel()">
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let fuel of fuels" [value]="fuel">
+        {{fuel.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div *ngIf="fuel">
+    <div>
+      Base duration:
+      <span>{{fuel.duration}}</span>
+    </div>
+    <div>
+      Base power:
+      <span>{{fuel.basePower}}</span>
+    </div>
+    <div>
+      Base heat:
+      <span>{{fuel.baseHeat}}</span>
+    </div>
+  </div>
+</mat-expansion-panel>

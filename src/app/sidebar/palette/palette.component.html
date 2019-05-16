@@ -1,0 +1,15 @@
+<mat-expansion-panel [expanded]="false">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Brush
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <mat-grid-list cols="3" rowHeight="40px">
+    <mat-grid-tile *ngFor="let type of blocks">
+      <label>
+        {{type.name}}
+        <input type="radio" [value]="type.character" (change)="changeBrush($event)" [checked]="type.character === reactorStore.brush" />
+      </label>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-expansion-panel>

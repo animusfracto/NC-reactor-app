@@ -7,14 +7,10 @@ export abstract class ModeratorBlock extends ReactorBlock {
   }
 
   getInvalidMessage(): string {
-    return 'Must be next to a Reactor Cell';
+    return 'Must be next to a FissionReactor Cell';
   }
 
-  calculateActive(...neighbors: ReactorBlock[]): void {
-    this.active = neighbors.filter(block => ReactorCell.blockType(block, ReactorCell)).length >= 1;
-  }
-
-  calculateActive2(...neighbors: ReactorBlock[]): void {
-    this.active = neighbors.filter(block => ReactorCell.blockType(block, ReactorCell)).length >= 1;
+  calculateActive(): void {
+    this.active = this.getNeighbors().filter(block => ReactorCell.blockType(block, ReactorCell)).length >= 1;
   }
 }

@@ -1,0 +1,55 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Statistics
+    </mat-panel-title>
+    <mat-panel-description *ngIf="stats && reactor.fuel">
+      {{stats.netHeat() <= 0 ? 'Stable' : 'Unstable'}},
+      {{stats.power.toFixed(1)}} RF/t
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <div *ngIf="stats">
+    <div>
+      Efficiency:
+      <span>{{(stats.efficiency * 100 / stats.cells).toFixed(1)}}%</span>
+    </div>
+    <div>
+      Heat:
+      <span>{{(stats.heatMultiplier * 100 / stats.cells).toFixed(1)}}%</span>
+    </div>
+    <div>
+      Cooling:
+      <span>{{stats.cooling}} H/t</span>
+    </div>
+  </div>
+  <div *ngIf="stats && reactor.fuel">
+    <em>Using {{reactor.fuel.name}}</em>
+    <div>
+      Power generated:
+      <span>{{stats.power.toFixed(1)}} RF/t</span>
+    </div>
+    <div>
+      Heat generated:
+      <span>{{stats.heat.toFixed(1)}} H/t</span>
+    </div>
+    <div>
+      Net heat:
+      <span>{{stats.netHeat().toFixed(1)}} H/t</span>
+    </div>
+    <div *ngIf="stats.netHeat() > 0">
+      Time to meltdown:
+      <span>{{reactor.timeToMeltdown().toFixed(1)}} sec</span>
+    </div>
+    <div>
+      Burn time:
+      <span>{{stats.burnTime.toFixed(1)}} mins</span>
+    </div>
+    <div>
+      Power per unit of fuel:
+      <span>{{(stats.burnTime * 20 * stats.power).toFixed(0)}} RF</span>
+    </div>
+  </div>
+  <div *ngIf="!stats">
+    Stats will be calculated as soon as the reactor is updated
+  </div>
+</mat-expansion-panel>

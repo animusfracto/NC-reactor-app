@@ -6,10 +6,11 @@ export class CopperBlock extends CoolingReactorBlock {
   name = 'Copper';
   character = 'U';
   style = { background: '#631' };
+  image = 'copper.png';
 
   getInvalidMessage(): string { return 'Must touch at least one active Glowstone Cooler'; }
 
-  calculateActive(...neighbors: ReactorBlock[]): void {
-    this.active = neighbors.filter(block => ReactorBlock.blockType(block, GlowstoneBlock)).length >= 1;
+  calculateActive(): void {
+    this.active = this.getNeighbors().filter(block => ReactorBlock.blockType(block, GlowstoneBlock)).length >= 1;
   }
 }

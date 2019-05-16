@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ReactorBlock} from '../../models/reactor-block.model';
+import { ReactorStoreService } from '../../service/reactor-store.service';
 
 @Component({
   selector: 'app-fission-block',
@@ -7,12 +8,29 @@ import {ReactorBlock} from '../../models/reactor-block.model';
   styleUrls: ['./fission-block.component.css']
 })
 export class FissionBlockComponent implements OnInit {
-
   @Input() block: ReactorBlock;
   @Input() style: {[p: string]: string};
+  @Input() scale: number;
 
-  constructor() { }
+  constructor(private reactorStore: ReactorStoreService) { }
 
   ngOnInit() {
+  }
+
+  getOffsets(): {[p: string]: string} {
+    return {
+      'top': (this.block.i + this.block.j + this.block.k * (this.block.reactor.dimensions.width + this.block.reactor.dimensions.length))
+        * this.scale + 'px',
+      'left': (this.block.reactor.dimensions.width - this.block.j + 1 + this.block.i) * this.scale * 2 + 'px'
+    };
+  }
+
+  getImage() {
+    return `assets/${this.scale}/${this.block.image}`;
+  }
+
+  blockClicked(): void {
+    console.log(`clicked ${this.block}`);
+    this.reactorStore.paintBlock(this.block.i, this.block.j, this.block.k);
   }
 }

@@ -6,10 +6,11 @@ export class IronBlock extends CoolingReactorBlock {
   name = 'Iron';
   character = 'F';
   style = { background: '#ddd' };
+  image = 'iron.png';
 
   getInvalidMessage(): string { return 'Must touch at least one active Gold Cooler'; }
 
-  calculateActive(...neighbors: ReactorBlock[]): void {
-    this.active = neighbors.filter(block => ReactorBlock.blockType(block, GoldBlock)).length >= 1;
+  calculateActive(): void {
+    this.active = this.getNeighbors().filter(block => ReactorBlock.blockType(block, GoldBlock)).length >= 1;
   }
 }

@@ -11,8 +11,8 @@ export class WaterBlock extends CoolingReactorBlock {
 
   getInvalidMessage(): string { return 'Must touch at least one Reactor Cell or active moderator block'; }
 
-  calculateActive(...neighbors: ReactorBlock[]): void {
-    this.active = neighbors.filter(block => ReactorBlock.blockType(block, ReactorCell)
+  calculateActive(): void {
+    this.active = this.getNeighbors().filter(block => ReactorBlock.blockType(block, ReactorCell)
                                 || ReactorBlock.blockType(block, ModeratorBlock)).length >= 1;
   }
 }

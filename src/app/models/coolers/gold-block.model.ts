@@ -7,10 +7,12 @@ export class GoldBlock extends CoolingReactorBlock {
   name = 'Gold';
   character = 'A';
   style = { background: '#fd0' };
+  image = 'gold.png';
 
   getInvalidMessage(): string { return 'Must touch at least one active Water Cooler and on active Redstone Cooler'; }
 
-  calculateActive(...neighbors: ReactorBlock[]): void {
+  calculateActive(): void {
+    const neighbors = this.getNeighbors();
     this.active = neighbors.filter(block => ReactorBlock.blockType(block, WaterBlock)).length >= 1
       && neighbors.filter(block => ReactorBlock.blockType(block, RedstoneBlock)).length >= 1;
   }
