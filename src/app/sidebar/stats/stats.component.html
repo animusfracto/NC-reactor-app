@@ -22,8 +22,9 @@
       <span>{{stats.cooling}} H/t</span>
     </div>
   </div>
+  <br/>
   <div *ngIf="stats && reactor.fuel">
-    <em>Using {{reactor.fuel.name}}</em>
+    <b>Using {{reactor.fuel.name}}</b>
     <div>
       Power generated:
       <span>{{stats.power.toFixed(1)}} RF/t</span>

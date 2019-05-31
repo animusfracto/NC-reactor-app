@@ -3,10 +3,12 @@ import { ReactorStats } from './reactor-stats.model';
 import { Dimensions } from './dimensions.model';
 import { CoolingReactorBlock } from './coolers/cooling-reactor-block.model';
 import { ModeratorBlock } from './moderators/moderator-block.model';
-import { ReactorCell } from './moderators/reactor-cell.model';
+import { ReactorCell } from './reactor-cell.model';
 import { FissionFuel } from './fission-fuel.model';
 import { ReactorStoreService } from '../service/reactor-store.service';
 import { ReactorBlockFactory } from './reactor-block-factory';
+import { IngredientList } from './ingredient.model';
+import { isUpperCase } from 'tslint/lib/utils';
 
 export class FissionReactor {
   dimensions: Dimensions;
@@ -90,6 +92,14 @@ export class FissionReactor {
       }
     }
     this.stats.setFuel(this.fuel);
+  }
+
+  public getIngredients(): IngredientList {
+    const ingredients = new IngredientList([]);
+    for (const block of this.blocks) {
+      ingredients.add(block.ingredients);
+    }
+    return ingredients;
   }
 
   // Time to meltdown in seconds

@@ -8,7 +8,8 @@
     <mat-grid-tile *ngFor="let type of blocks">
       <label>
         {{type.name}}
-        <input type="radio" [value]="type.character" (change)="changeBrush($event)" [checked]="type.character === reactorStore.brush" />
+        <input type="radio" [value]="type.character" (change)="changeBrush($event)"
+               [checked]="type.character.toUpperCase() === reactorStore.brush.toUpperCase()" />
       </label>
     </mat-grid-tile>
   </mat-grid-list>

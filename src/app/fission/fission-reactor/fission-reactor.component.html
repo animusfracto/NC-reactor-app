@@ -1,7 +1,5 @@
-<div class="reactor-area" *ngIf="reactor$ | async as reactor">
+<div class="reactor-area" *ngIf="reactor$ | async as reactor" [ngStyle]="{ height: reactor.dimensions.volume() * 32 + 'px' }">
   <app-fission-block class="reactor-block" *ngFor="let block of reactor.blocks" [block]="block" [scale]="32">
-<!--                     [style.grid-column-start]="reactor.dimensions.length - block.i + block.j"-->
-<!--                     [style.grid-row-start]="block.k * (reactor.dimensions.length + reactor.dimensions.width)">-->
     Reactor Block
   </app-fission-block>
 </div>

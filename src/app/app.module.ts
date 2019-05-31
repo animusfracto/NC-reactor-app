@@ -5,7 +5,7 @@ import {
   MatExpansionModule,
   MatFormFieldModule, MatGridListModule,
   MatInputModule, MatSelectModule,
-  MatSidenavModule, MatToolbarModule,
+  MatSidenavModule, MatSortModule, MatTableModule, MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
@@ -64,7 +64,9 @@ const ROUTES: Routes = [
     MatToolbarModule,
     MatExpansionModule,
     MatGridListModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

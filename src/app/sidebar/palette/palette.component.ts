@@ -10,6 +10,7 @@ import { ReactorBlock } from '../../models/reactor-block.model';
 })
 export class PaletteComponent implements OnInit {
   readonly blocks: ReactorBlock[] = Object.values(ReactorBlockFactory.types).map((fn) => fn());
+  activeCooler = false;
 
   constructor(private reactorStore: ReactorStoreService) { }
 
@@ -17,6 +18,7 @@ export class PaletteComponent implements OnInit {
   }
 
   changeBrush(event): void {
-    this.reactorStore.brush = event.target.value;
+    const selected = event.target.value;
+    this.reactorStore.brush = this.activeCooler ? selected.toUpperCase() : selected.toLowerCase();
   }
 }

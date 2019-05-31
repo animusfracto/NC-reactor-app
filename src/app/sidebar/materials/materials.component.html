@@ -4,5 +4,18 @@
       Material Cost
     </mat-panel-title>
   </mat-expansion-panel-header>
-  Coming soon &reg;
+
+  <table mat-table [dataSource]="ingredientSource" matSort>
+    <ng-container matColumnDef="itemName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Material</th>
+      <td mat-cell *matCellDef="let ingredient">{{ingredient.itemName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="itemQuantity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Number</th>
+      <td mat-cell *matCellDef="let ingredient">{{ingredient.itemQuantity}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </mat-expansion-panel>

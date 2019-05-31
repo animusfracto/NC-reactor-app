@@ -1,11 +1,22 @@
-import { ReactorBlock } from '../reactor-block.model';
-import { ModeratorBlock } from './moderator-block.model';
+import { ReactorBlock } from './reactor-block.model';
+import { ModeratorBlock } from './moderators/moderator-block.model';
+import { IngredientList } from './ingredient.model';
 
 export class ReactorCell extends ReactorBlock {
   name = 'Reactor Cell';
   character = 'C';
-  style = { background: '#bbb' };
   image = 'cell.png';
+
+  readonly ingredients = new IngredientList([
+    {
+      itemName: 'Tough Alloy',
+      itemQuantity: 4
+    },
+    {
+      itemName: 'Glass',
+      itemQuantity: 4
+    }
+  ]);
 
   active = true;
 

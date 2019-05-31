@@ -1,5 +1,5 @@
-<div class="block" [ngStyle]="getOffsets()" (click)="blockClicked()" [class.inactive]="block.active === false">
-<!--<div class="block" (click)="blockClicked()" [class.inactive]="! block.active">-->
+<div class="block" [ngStyle]="getOffsets()" (click)="blockClicked()"
+     [class.invalid]="block.active === false" [class.active]="isActive()">
   <img [matTooltip]="block.getTooltip()" matTooltipClass="block-tooltip"
        [src]="getImage()" [alt]="block.name" />
 </div>

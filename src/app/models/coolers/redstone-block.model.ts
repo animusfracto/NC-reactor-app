@@ -1,12 +1,23 @@
 import { ReactorBlock } from '../reactor-block.model';
-import { ReactorCell } from '../moderators/reactor-cell.model';
+import { ReactorCell } from '../reactor-cell.model';
 import { CoolingReactorBlock } from './cooling-reactor-block.model';
+import { IngredientList } from '../ingredient.model';
 
 export class RedstoneBlock extends CoolingReactorBlock {
   name = 'Redstone';
   character = 'R';
-  style = { background: '#922' };
   image = 'redstone.png';
+
+  readonly ingredients = new IngredientList([
+    {
+      itemName: 'Redstone Block',
+      itemQuantity: 2
+    },
+    {
+      itemName: 'Empty Cooler',
+      itemQuantity: 1
+    }
+  ]);
 
   getInvalidMessage(): string { return 'Must touch at least one Reactor Cell'; }
 

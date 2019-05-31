@@ -1,10 +1,11 @@
 import { FissionReactor } from './fission-reactor.model';
+import { IngredientList } from './ingredient.model';
 
 export abstract class ReactorBlock {
-  name: string;
-  character: string;
-  style: { [p: string]: string };
-  image: string;
+  readonly name: string;
+  readonly character: string;
+  readonly image: string;
+  readonly ingredients: IngredientList;
 
   reactor: FissionReactor;
   i: number;

@@ -3,6 +3,5 @@
   <app-palette>Palette</app-palette>
   <app-fuels [fuel]="reactor.fuel">Fuels</app-fuels>
   <app-stats [stats]="reactor.stats" [reactor]="reactor">Stats</app-stats>
-  <!-- TODO -->
-  <app-materials>Materials</app-materials>
+  <app-materials [reactor]="reactor$">Materials</app-materials>
 </div>

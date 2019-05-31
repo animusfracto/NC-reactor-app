@@ -1,5 +1,5 @@
 import { AirBlock } from './air-block.model';
-import { ReactorCell } from './moderators/reactor-cell.model';
+import { ReactorCell } from './reactor-cell.model';
 import { GraphiteBlock } from './moderators/graphite-block.model';
 import { WaterBlock } from './coolers/water-block.model';
 import { RedstoneBlock } from './coolers/redstone-block.model';
@@ -43,10 +43,10 @@ export class ReactorBlockFactory {
   };
 
   public static newBlock(character: string): ReactorBlock {
-    const block = this.types[character];
+    const block = this.types[character.toUpperCase()];
     if (block != null) {
       const blockObject = block();
-      if (isUpperCase(character) && blockObject instanceof CoolingReactorBlock) {
+      if (character === character.toUpperCase() && blockObject instanceof CoolingReactorBlock) {
         blockObject.activeCooler = true;
       }
       return blockObject;

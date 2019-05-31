@@ -1,5 +1,5 @@
 import { ReactorBlock } from '../reactor-block.model';
-import { ReactorCell } from './reactor-cell.model';
+import { ReactorCell } from '../reactor-cell.model';
 
 export abstract class ModeratorBlock extends ReactorBlock {
   public getHeating() {

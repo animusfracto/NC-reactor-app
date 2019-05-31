@@ -1,6 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ReactorBlock} from '../../models/reactor-block.model';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { ReactorBlock } from '../../models/reactor-block.model';
 import { ReactorStoreService } from '../../service/reactor-store.service';
+import { CoolingReactorBlock } from '../../models/coolers/cooling-reactor-block.model';
 
 @Component({
   selector: 'app-fission-block',
@@ -15,6 +17,10 @@ export class FissionBlockComponent implements OnInit {
   constructor(private reactorStore: ReactorStoreService) { }
 
   ngOnInit() {
+  }
+
+  isActive(): boolean {
+    return (this.block instanceof CoolingReactorBlock && this.block.activeCooler);
   }
 
   getOffsets(): {[p: string]: string} {

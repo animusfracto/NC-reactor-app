@@ -20,7 +20,7 @@ import { CryotheumBlock } from '../models/coolers/cryotheum-block.model';
 import { GoldBlock } from '../models/coolers/gold-block.model';
 import { RedstoneBlock } from '../models/coolers/redstone-block.model';
 import { ModeratorBlock } from '../models/moderators/moderator-block.model';
-import { ReactorCell } from '../models/moderators/reactor-cell.model';
+import { ReactorCell } from '../models/reactor-cell.model';
 import { FissionFuel } from '../models/fission-fuel.model';
 import { FissionReactor } from '../models/fission-reactor.model';
 
@@ -54,20 +54,16 @@ export class ReactorStoreService {
   //   reactor -> reactor string
   public parseReactorFromURL(): void {
     this.route.queryParamMap.subscribe(params => {
-      let dims;
       if (params.has('height')) {
         console.log('Dimensions detected in URL');
-        dims = new Dimensions(+params.get('height'), +params.get('length'), +params.get('width'));
-      }
-      if (params.has('reactor')) {
-        if (dims) {
+        const dims = new Dimensions(+params.get('height'), +params.get('length'), +params.get('width'));
+        if (params.has('reactor')) {
           console.log('Reactor detected in URL');
           this.updateReactor(new FissionReactor(dims, params.get('reactor')));
         } else {
-          console.log('Reactor detected in URL, but skipping because dimensions were not provided');
+          this.updateReactor(new FissionReactor(dims));
         }
       }
-      // this.updateReactor(new FissionReactor(dims));
     });
   }
 

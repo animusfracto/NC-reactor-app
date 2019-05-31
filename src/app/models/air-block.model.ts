@@ -1,13 +1,11 @@
 import { ReactorBlock } from './reactor-block.model';
+import { IngredientList } from './ingredient.model';
 
 export class AirBlock extends ReactorBlock {
   name = 'Air';
   character = '0';
-  style = {
-    background: 'none',
-    border: '1px dashed'
-  };
-  image; // TODO create and add
+  image = 'air.png';
+  readonly ingredients: IngredientList = new IngredientList([]);
 
   active = true;
 
