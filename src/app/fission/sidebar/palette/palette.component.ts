@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactorStoreService } from '../../service/reactor-store.service';
-import { ReactorBlockFactory } from '../../models/reactor-block-factory';
-import { ReactorBlock } from '../../models/reactor-block.model';
+import { ReactorStoreService } from '../../../service/reactor-store.service';
+import { ReactorBlockFactory } from '../../../models/reactor-block-factory';
+import { ReactorBlock } from '../../../models/reactor-block.model';
 
 @Component({
   selector: 'app-palette',

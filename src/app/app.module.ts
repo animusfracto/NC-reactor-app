@@ -5,7 +5,7 @@ import {
   MatExpansionModule,
   MatFormFieldModule, MatGridListModule,
   MatInputModule, MatSelectModule,
-  MatSidenavModule, MatSortModule, MatTableModule, MatToolbarModule,
+  MatSidenavModule, MatSortModule, MatTableModule, MatTabsModule, MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,20 +14,30 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { FissionReactorComponent } from './fission/fission-reactor/fission-reactor.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarComponent } from './fission/sidebar/sidebar.component';
 import { FissionBlockComponent } from './fission/fission-block/fission-block.component';
-import { DesignerComponent } from './designer/designer.component';
+import { DesignerComponent } from './fission/designer/designer.component';
 import { NgLetDirective } from './directives/ng-let.directive';
-import { DimensionsComponent } from './sidebar/dimensions/dimensions.component';
-import { PaletteComponent } from './sidebar/palette/palette.component';
-import { FuelsComponent } from './sidebar/fuels/fuels.component';
-import { StatsComponent } from './sidebar/stats/stats.component';
-import { MaterialsComponent } from './sidebar/materials/materials.component';
+import { DimensionsComponent } from './fission/sidebar/dimensions/dimensions.component';
+import { PaletteComponent } from './fission/sidebar/palette/palette.component';
+import { FuelsComponent } from './fission/sidebar/fuels/fuels.component';
+import { StatsComponent } from './fission/sidebar/stats/stats.component';
+import { MaterialsComponent } from './fission/sidebar/materials/materials.component';
+import { StelleratorComponent } from './fusion/stellerator/stellerator.component';
+import { AboutComponent } from './about/about.component';
 
 const ROUTES: Routes = [
   {
     path: 'fission',
     component: DesignerComponent
+  },
+  {
+    path: 'fusion',
+    component: StelleratorComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   },
   {
     path: '',
@@ -48,7 +58,9 @@ const ROUTES: Routes = [
     PaletteComponent,
     FuelsComponent,
     StatsComponent,
-    MaterialsComponent
+    MaterialsComponent,
+    StelleratorComponent,
+    AboutComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -66,7 +78,8 @@ const ROUTES: Routes = [
     MatGridListModule,
     MatSelectModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { ReactorStoreService } from '../service/reactor-store.service';
-import { FissionReactor } from '../models/fission-reactor.model';
+import { ReactorStoreService } from '../../service/reactor-store.service';
+import { FissionReactor } from '../../models/fission-reactor.model';
 
 @Component({
   selector: 'app-sidebar',

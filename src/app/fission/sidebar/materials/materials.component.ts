@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FissionReactor } from '../../models/fission-reactor.model';
-import { Ingredient } from '../../models/ingredient.model';
+import { FissionReactor } from '../../../models/fission-reactor.model';
+import { Ingredient } from '../../../models/ingredient.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 

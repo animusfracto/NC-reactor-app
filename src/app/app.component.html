@@ -1,1 +1,16 @@
+<nav mat-tab-nav-bar>
+  <h2 style="margin: auto">NuclearCraft Reactor Designer</h2>
+  <a mat-tab-link *ngFor="let link of links"
+     [routerLink]="link.path"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    {{link.text}}
+  </a>
+
+  <span class="flex-spacer"></span>
+  <a mat-tab-link routerLink="/about" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+    About
+  </a>
+</nav>
+
 <router-outlet></router-outlet>

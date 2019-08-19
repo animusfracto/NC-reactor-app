@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ReactorStats } from '../../models/reactor-stats.model';
-import { FissionReactor } from '../../models/fission-reactor.model';
+import { ReactorStats } from '../../../models/reactor-stats.model';
+import { FissionReactor } from '../../../models/fission-reactor.model';
 
 @Component({
   selector: 'app-stats',

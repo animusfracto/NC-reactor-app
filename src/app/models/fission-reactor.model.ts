@@ -35,15 +35,15 @@ export class FissionReactor {
       throw Error(`dimensions ${this.dimensions} are not valid for string length ${reactorString.length}`);
     }
 
-    const x = this.dimensions.length;
-    const y = this.dimensions.width;
-    const z = this.dimensions.height;
+    const l = this.dimensions.length;
+    const w = this.dimensions.width;
+    const h = this.dimensions.height;
 
     this.blocks = [];
-    for (let k = 0; k < z; k++) {
-      for (let j = 0; j < y; j++) {
-        for (let i = 0; i < x; i++) {
-          this.blocks.push(this.newBlock(reactorString.charAt(i + x * j + k * y * z), i, j, k));
+    for (let k = 0; k < h; k++) {
+      for (let j = 0; j < w; j++) {
+        for (let i = 0; i < l; i++) {
+          this.blocks.push(this.newBlock(reactorString.charAt(i + l * j + k * w * h), i, j, k));
         }
       }
     }

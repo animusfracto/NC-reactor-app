@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactorStoreService } from '../service/reactor-store.service';
+import { ReactorStoreService } from '../../service/reactor-store.service';
 
 @Component({
   selector: 'app-designer',

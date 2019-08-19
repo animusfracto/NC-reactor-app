@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Dimensions } from '../../models/dimensions.model';
-import { ReactorStoreService } from '../../service/reactor-store.service';
+import { Dimensions } from '../../../models/dimensions.model';
+import { ReactorStoreService } from '../../../service/reactor-store.service';
 
 @Component({
   selector: 'app-dimensions',

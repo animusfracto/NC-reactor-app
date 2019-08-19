@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FissionFuel, fuels } from '../../models/fission-fuel.model';
-import { ReactorStoreService } from '../../service/reactor-store.service';
+import { FissionFuel, fuels } from '../../../models/fission-fuel.model';
+import { ReactorStoreService } from '../../../service/reactor-store.service';
 
 @Component({
   selector: 'app-fuels',
