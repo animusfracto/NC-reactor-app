@@ -1,3 +1,7 @@
+.header {
+  margin: auto 1em;
+}
+
 .flex-spacer {
   flex-grow: 1;
 }
